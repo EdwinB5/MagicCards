@@ -116,6 +116,7 @@ def enviarNumero(num):
 	server_address = ('localhost', 10000)
 	enviar = num
 	message = bytes(enviar, 'utf-8')
+	connection = False
 	
 	try:
 		# Enviar data
@@ -126,6 +127,7 @@ def enviarNumero(num):
 		data, server = sock.recvfrom(4096)
 		numeroSecreto = str(data, 'utf-8')
 		print('El número secreto es: ' + numeroSecreto)
+		connection = True
 
 	except ConnectionResetError:
 		print("El servidor no se encuentra disponible...")
@@ -133,6 +135,7 @@ def enviarNumero(num):
 	finally:
 		print('Cerrando el socket')
 		sock.close()
+		return connection
     	
     	
 

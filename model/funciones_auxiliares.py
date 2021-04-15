@@ -11,6 +11,14 @@ clear()
 
 def textDecoration():
 	print('-----------------------------------------------------------')
-	ascii_banner = pyfiglet.figlet_format("Magic Cards")
+	ascii_banner = pyfiglet.figlet_format('Magic Cards')
 	print(ascii_banner)
-	print("V. 1.0")
+	print('V. 1.0')
+
+
+
+
+
+	
+
+	
