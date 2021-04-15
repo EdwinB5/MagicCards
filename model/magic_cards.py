@@ -120,22 +120,18 @@ def enviarNumero(num):
 	
 	try:
 		# Enviar data
-		print('Enviando {!r}'.format(message))
 		sock.sendto(message, server_address)
 		# Recibir respuesta
-		print('Esperando respuesta del servidor...')
 		data, server = sock.recvfrom(4096)
 		numeroSecreto = str(data, 'utf-8')
-		print('El número secreto es: ' + numeroSecreto)
 		connection = True
 
 	except ConnectionResetError:
-		print("El servidor no se encuentra disponible...")
+		print('El servidor no se encuentra disponible...')
 
 	finally:
-		print('Cerrando el socket')
 		sock.close()
-		return connection
+		return connection, numeroSecreto
     	
     	
 

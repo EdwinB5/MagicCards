@@ -89,5 +89,5 @@ while True:
 
     if data:
         sent = sock.sendto(data, address)
-        print('Enviando {} bytes devuelta a la dirección {}'.format(
+        print('Enviando respuesta {} bytes devuelta a la dirección {}'.format(
             sent, address))

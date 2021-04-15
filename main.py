@@ -9,7 +9,7 @@ def iniciarPrograma():
 	print('-----------------------------------------------------------')
 	while not conexion:
 		print('Comprobando conexión con el servidor...')
-		conexion = enviarNumero('0000000')
+		conexion, numeroSecret = enviarNumero('0000000')
 		print('-----------------------------------------------------------')
 		if conexion:
 			while not startProgram:
@@ -45,48 +45,56 @@ def numeroEnCarta():
 
 def main():
 	numeroSecreto = "";
+	try:
 
-	iniciarPrograma()
-	clear()
+		iniciarPrograma()
+		clear()
 
-	textDecoration()
-	cartaUno()
-	numeroSecreto += str(numeroEnCarta())
-	clear()
-	
-	textDecoration()
-	cartaDos()
-	numeroSecreto += str(numeroEnCarta())
-	clear()
-	
-	textDecoration()
-	cartaTres()
-	numeroSecreto += str(numeroEnCarta())
-	clear()
-	
-	textDecoration()
-	cartaCuatro()
-	numeroSecreto += str(numeroEnCarta())
-	clear()
-	
-	textDecoration()
-	cartaCinco()
-	numeroSecreto += str(numeroEnCarta())
-	clear()
-	
-	textDecoration()
-	cartaSeis()
-	numeroSecreto += str(numeroEnCarta())
-	clear()
-	
-	textDecoration()
-	cartaSiete()
-	numeroSecreto += str(numeroEnCarta())
-	clear()
+		textDecoration()
+		cartaUno()
+		numeroSecreto += str(numeroEnCarta())
+		clear()
+		
+		textDecoration()
+		cartaDos()
+		numeroSecreto += str(numeroEnCarta())
+		clear()
+		
+		textDecoration()
+		cartaTres()
+		numeroSecreto += str(numeroEnCarta())
+		clear()
+		
+		textDecoration()
+		cartaCuatro()
+		numeroSecreto += str(numeroEnCarta())
+		clear()
+		
+		textDecoration()
+		cartaCinco()
+		numeroSecreto += str(numeroEnCarta())
+		clear()
+		
+		textDecoration()
+		cartaSeis()
+		numeroSecreto += str(numeroEnCarta())
+		clear()
+		
+		textDecoration()
+		cartaSiete()
+		numeroSecreto += str(numeroEnCarta())
+		clear()
 
-	numeroSecreto = ''.join(reversed(numeroSecreto))
+		numeroSecreto = ''.join(reversed(numeroSecreto))
 
-	enviarNumero(numeroSecreto)
+		conexion, numeroSecreto = enviarNumero(numeroSecreto)
+
+		mostrarNumero(numeroSecreto)
+
+	except UnboundLocalError:
+		pass
 
 if __name__ == "__main__":
     main()
+
+
