@@ -26,6 +26,26 @@ def iniciarPrograma():
 			print('El servidor no se encuentra disponible, compruebe que el servidor este disponible e intente otra vez...')
 			sys.exit()
 
+def finalizarPrograma():
+	
+	cerrar = False
+
+	while not cerrar:
+		entrada = str(input(("Desea reiniciar el programa? [y/N]: ")))
+		if (entrada.lower() == 'y' or entrada.lower() == "yes"):
+			cerrar = True
+		elif (entrada.lower()=='n' or entrada.lower() == 'no'):
+			print('-----------------------------------------------------------')
+			print("El programa se esta cerrando...")
+			print('-----------------------------------------------------------')
+			sys.exit()
+		else:
+			print('-----------------------------------------------------------')
+			print("Opción no valida, intente otra vez...")
+			print('-----------------------------------------------------------')
+	if cerrar:
+		main()
+
 def numeroEnCarta():
 	respuestaValida = False
 	while not respuestaValida:
@@ -47,6 +67,7 @@ def main():
 	numeroSecreto = "";
 	try:
 
+		clear()
 		iniciarPrograma()
 		clear()
 
@@ -90,6 +111,8 @@ def main():
 		conexion, numeroSecreto = enviarNumero(numeroSecreto)
 
 		mostrarNumero(numeroSecreto)
+
+		finalizarPrograma()
 
 	except UnboundLocalError:
 		pass
