@@ -129,7 +129,9 @@ def enviarNumero(num, direccion):
 	except ConnectionResetError:
 		print('-----------------------------------------------------------')
 		print('El servidor no se encuentra disponible...')
-
+	except:
+		print('-----------------------------------------------------------')
+		print('El servidor no se encuentra disponible...')
 	finally:
 		sock.close()
 		return connection, numeroSecreto

@@ -16,10 +16,10 @@ def textDecoration():
 	print('V. 1.0')
 
 def mostrarNumero(num):
-	print('-----------------------------------------------------------------------')
-	ascii_banner = pyfiglet.figlet_format('El número es '+ str(num))
+	print('---------------------------------------------------------------------------')
+	ascii_banner = pyfiglet.figlet_format('El numero es '+ str(num))
 	print(ascii_banner)
-	print('-----------------------------------------------------------------------')
+	print('---------------------------------------------------------------------------')
 
 
 
