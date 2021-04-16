@@ -1,4 +1,5 @@
 import socket
+import pyfiglet
 
 """
 Números en binario (1-100)
@@ -63,23 +64,29 @@ def diccionarioBinario(numeroBinario):
 			print(diccionarioBinario[key])
 		#print (key,":",diccionarioBinario[key])
 	"""
+def tituloServidor():
+	print('---------------------------------------------------------------')
+	ascii_banner = pyfiglet.figlet_format('Servidor UDP')
+	print(ascii_banner)
+	print('---------------------------------------------------------------')
 
 # Creación del socket UDP
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # Uniendo el socket al puerto
-print("------ServidorUDP------")
+tituloServidor()
 server_address = ('localhost', 10000)
 print('Iniciando el servidor {} en el puerto {}'.format(*server_address))
 sock.bind(server_address)
+print('---------------------------------------------------------------')
 
 while True:
     print('\nEsperando una solicitud...')
     data, address = sock.recvfrom(4096)
-
     print('Recibiendo {} bytes de la dirección {}'.format(
         len(data), address))
     print(data)
+    print('---------------------------------------------------------------')
 
     key = str(data, 'utf-8')
 
