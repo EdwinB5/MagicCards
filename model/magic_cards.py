@@ -111,9 +111,9 @@ def cartaSiete():
 
 	mostrarCarta(cartaSiete, 7)
 
-def enviarNumero(num):
+def enviarNumero(num, direccion):
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	server_address = ('localhost', 10000)
+	server_address = (direccion, 10000)
 	enviar = num
 	message = bytes(enviar, 'utf-8')
 	connection = False
@@ -127,6 +127,7 @@ def enviarNumero(num):
 		connection = True
 
 	except ConnectionResetError:
+		print('-----------------------------------------------------------')
 		print('El servidor no se encuentra disponible...')
 
 	finally:

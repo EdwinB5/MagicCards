@@ -5,11 +5,14 @@ from model.magic_cards import *
 def iniciarPrograma():
 	conexion = False
 	startProgram = False
+	direccion_servidor = ""
 	textDecoration()
 	print('-----------------------------------------------------------')
 	while not conexion:
+		direccion_servidor = str(input('Introduzca la dirección del servidor: '))
+		print('-----------------------------------------------------------')
 		print('Comprobando conexión con el servidor...')
-		conexion, numeroSecret = enviarNumero('0000000')
+		conexion, numeroSecret = enviarNumero('0000000', direccion_servidor)
 		print('-----------------------------------------------------------')
 		if conexion:
 			while not startProgram:
@@ -25,6 +28,7 @@ def iniciarPrograma():
 		elif(conexion == False):
 			print('El servidor no se encuentra disponible, compruebe que el servidor este disponible e intente otra vez...')
 			sys.exit()
+	return direccion_servidor
 
 def finalizarPrograma():
 	
@@ -68,7 +72,7 @@ def main():
 	try:
 
 		clear()
-		iniciarPrograma()
+		address = iniciarPrograma()
 		clear()
 
 		textDecoration()
@@ -108,7 +112,7 @@ def main():
 
 		numeroSecreto = ''.join(reversed(numeroSecreto))
 
-		conexion, numeroSecreto = enviarNumero(numeroSecreto)
+		conexion, numeroSecreto = enviarNumero(numeroSecreto, address)
 
 		mostrarNumero(numeroSecreto)
 
