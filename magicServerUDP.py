@@ -73,31 +73,32 @@ def tituloServidor():
 # Creación del socket UDP
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-# Uniendo el socket al puerto
 tituloServidor()
 nombre_equipo = socket.gethostname()
 direccion_equipo = socket.gethostbyname(nombre_equipo)
+# Uniendo el socket al puerto
 server_address = (direccion_equipo, 10000)
 print('Iniciando el servidor {} en el puerto {}'.format(*server_address))
 sock.bind(server_address)
 print('---------------------------------------------------------------')
-
+contador = 1
 while True:
-    print('\nEsperando una solicitud...')
-    data, address = sock.recvfrom(4096)
-    print('Recibiendo {} bytes de la dirección {}'.format(
+	print ("     Solicitud " + str(contador))
+	print('Esperando una solicitud...')
+	data, address = sock.recvfrom(4096)
+	print('Recibiendo {} bytes de la dirección {}'.format(
         len(data), address))
-    print(data)
-    
+	print(data)
 
-    key = str(data, 'utf-8')
+	key = str(data, 'utf-8')
 
-    numeroSecreto = diccionarioBinario(key)
+	numeroSecreto = diccionarioBinario(key)
 
-    data = bytes(numeroSecreto, 'utf-8')
+	data = bytes(numeroSecreto, 'utf-8')
 
-    if data:
-        sent = sock.sendto(data, address)
-        print('Enviando respuesta {} bytes devuelta a la dirección {}'.format(
+	if data:
+		sent = sock.sendto(data, address)
+		print('Enviando respuesta {} bytes devuelta a la dirección {}'.format(
             sent, address))
-    print('---------------------------------------------------------------')
+		print('---------------------------------------------------------------')
+	contador += 1
