@@ -88,7 +88,7 @@ while True:
     print('Recibiendo {} bytes de la dirección {}'.format(
         len(data), address))
     print(data)
-    print('---------------------------------------------------------------')
+    
 
     key = str(data, 'utf-8')
 
@@ -100,3 +100,4 @@ while True:
         sent = sock.sendto(data, address)
         print('Enviando respuesta {} bytes devuelta a la dirección {}'.format(
             sent, address))
+    print('---------------------------------------------------------------')
