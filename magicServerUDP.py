@@ -75,7 +75,9 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # Uniendo el socket al puerto
 tituloServidor()
-server_address = ('localhost', 10000)
+nombre_equipo = socket.gethostname()
+direccion_equipo = socket.gethostbyname(nombre_equipo)
+server_address = (direccion_equipo, 10000)
 print('Iniciando el servidor {} en el puerto {}'.format(*server_address))
 sock.bind(server_address)
 print('---------------------------------------------------------------')
