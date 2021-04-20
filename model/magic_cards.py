@@ -109,6 +109,23 @@ def cartaSiete():
 
 	mostrarCarta(cartaSiete, 7)
 
+def selectorCarta(n):
+	if(n==0):
+		cartaUno()
+	elif(n==1):
+		cartaDos()
+	elif(n==2):
+		cartaTres()
+	elif(n==3):
+		cartaCuatro()
+	elif(n==4):
+		cartaCinco()
+	elif(n==5):
+		cartaSeis()
+	elif(n==6):
+		cartaSiete()
+	else:
+		print("Solo hay siete cartas, intente otra vez...")
     	
     	
 

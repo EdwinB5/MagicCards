@@ -68,59 +68,25 @@ def numeroEnCarta():
 	return respuesta
 
 def main():
+	i = 0
 	numeroSecreto = "";
-	try:
-
+	address = iniciarPrograma()
+	for i in range(7):
 		clear()
-		address = iniciarPrograma()
-		clear()
-
 		textDecoration()
-		cartaUno()
+		selectorCarta(i)
 		numeroSecreto += str(numeroEnCarta())
-		clear()
-		
-		textDecoration()
-		cartaDos()
-		numeroSecreto += str(numeroEnCarta())
-		clear()
-		
-		textDecoration()
-		cartaTres()
-		numeroSecreto += str(numeroEnCarta())
-		clear()
-		
-		textDecoration()
-		cartaCuatro()
-		numeroSecreto += str(numeroEnCarta())
-		clear()
-		
-		textDecoration()
-		cartaCinco()
-		numeroSecreto += str(numeroEnCarta())
-		clear()
-		
-		textDecoration()
-		cartaSeis()
-		numeroSecreto += str(numeroEnCarta())
-		clear()
-		
-		textDecoration()
-		cartaSiete()
-		numeroSecreto += str(numeroEnCarta())
-		clear()
 
-		numeroSecreto = ''.join(reversed(numeroSecreto))
+	numeroSecreto = ''.join(reversed(numeroSecreto))
 
-		conexion, numeroSecreto = enviarNumero(numeroSecreto, address)
+	conexion, numeroSecreto = enviarNumero(numeroSecreto, address)
+	
+	clear()
+	mostrarNumero(numeroSecreto)
 
-		mostrarNumero(numeroSecreto)
-
-		finalizarPrograma()
-
-	except UnboundLocalError:
-		pass
-
+	finalizarPrograma()
+	clear()
+	
 if __name__ == "__main__":
     main()
 

@@ -1,6 +1,9 @@
 import os
 import pyfiglet
 import socket
+import platform    # For getting the operating system name
+import subprocess  # For executing a shell command
+
 
 def clear():
     if os.name == "nt":
@@ -48,7 +51,50 @@ def enviarNumero(num, direccion):
 		return connection, numeroSecreto
 
 
+def ping1(host):
+    """
+    Returns True if host (str) responds to a ping request.
+    Remember that a host may not respond to a ping (ICMP) request even if the host name is valid.
+    """
 
-	
+    # Option for the number of packets as a function of
+    param = '-n' if platform.system().lower()=='windows' else '-c'
+
+    # Building the command. Ex: "ping -c 1 google.com"
+    command = ['ping', param, '1', host]
+
+    return subprocess.call(command) == 0
+
+def ping(host, network_timeout=3):
+    """Send a ping packet to the specified host, using the system "ping" command."""
+    args = [
+        'ping'
+    ]
+
+    platform_os = platform.system().lower()
+
+    if platform_os == 'windows':
+        args.extend(['-n', '1'])
+        args.extend(['-w', str(network_timeout * 1000)])
+    elif platform_os in ('linux', 'darwin'):
+        args.extend(['-c', '1'])
+        args.extend(['-W', str(network_timeout)])
+    else:
+        raise NotImplemented('Unsupported OS: {}'.format(platform_os))
+
+    args.append(host)
+
+    try:
+        if platform_os == 'windows':
+            output = subprocess.run(args, check=True, universal_newlines=True).stdout
+
+            if output and 'TTL' not in output:
+                return False
+        else:
+            subprocess.run(args, check=True)
+
+        return True
+    except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+        return False
 
 	
