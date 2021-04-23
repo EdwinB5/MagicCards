@@ -3,6 +3,7 @@ from model.funciones_auxiliares import *
 from model.magic_cards import *
 
 def iniciarPrograma():
+	clear()
 	conexion = False
 	startProgram = False
 	direccion_servidor = ""
