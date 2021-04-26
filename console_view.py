@@ -13,7 +13,8 @@ def iniciarPrograma():
 		direccion_servidor = str(input('Introduzca la dirección del servidor: '))
 		print('-----------------------------------------------------------')
 		print('Comprobando conexión con el servidor...')
-		conexion, numeroSecret = enviarNumero('0000000', direccion_servidor)
+		#conexion, numeroSecret = enviarNumero('0000000', direccion_servidor)
+		conexion = ping(direccion_servidor)
 		print('-----------------------------------------------------------')
 		if conexion:
 			while not startProgram:
@@ -31,6 +32,20 @@ def iniciarPrograma():
 			sys.exit()
 	return direccion_servidor
 
+def programaEnCurso(i,address):
+	numeroSecreto = ""
+	for i in range(7):
+		clear()
+		textDecoration()
+		selectorCarta(i)
+		numeroSecreto += str(numeroEnCarta())
+	numeroSecreto = ''.join(reversed(numeroSecreto))
+	conexion, numeroSecreto = enviarNumero(numeroSecreto, address)
+
+	clear()
+	mostrarNumero(numeroSecreto)
+
+
 def finalizarPrograma():
 	
 	cerrar = False
@@ -38,18 +53,20 @@ def finalizarPrograma():
 	while not cerrar:
 		entrada = str(input(("Desea reiniciar el programa? [y/N]: ")))
 		if (entrada.lower() == 'y' or entrada.lower() == "yes"):
-			cerrar = True
+			cerrar = False
+			return False
 		elif (entrada.lower()=='n' or entrada.lower() == 'no'):
 			print('---------------------------------------------------------------------------')
 			print("El programa se esta cerrando...")
 			print('---------------------------------------------------------------------------')
-			sys.exit()
+			return True
 		else:
 			print('---------------------------------------------------------------------------')
 			print("Opción no valida, intente otra vez...")
 			print('---------------------------------------------------------------------------')
 	if cerrar:
-		main()
+		return True
+
 
 def numeroEnCarta():
 	respuestaValida = False
@@ -70,23 +87,12 @@ def numeroEnCarta():
 
 def main():
 	i = 0
-	numeroSecreto = "";
 	address = iniciarPrograma()
-	for i in range(7):
-		clear()
-		textDecoration()
-		selectorCarta(i)
-		numeroSecreto += str(numeroEnCarta())
+	cerrar = False
+	while not cerrar:
+		programaEnCurso(i, address)
 
-	numeroSecreto = ''.join(reversed(numeroSecreto))
-
-	conexion, numeroSecreto = enviarNumero(numeroSecreto, address)
-	
-	clear()
-	mostrarNumero(numeroSecreto)
-
-	finalizarPrograma()
-	clear()
+		cerrar = finalizarPrograma()
 	
 if __name__ == "__main__":
     main()

@@ -50,21 +50,6 @@ def enviarNumero(num, direccion):
 		sock.close()
 		return connection, numeroSecreto
 
-
-def ping1(host):
-    """
-    Returns True if host (str) responds to a ping request.
-    Remember that a host may not respond to a ping (ICMP) request even if the host name is valid.
-    """
-
-    # Option for the number of packets as a function of
-    param = '-n' if platform.system().lower()=='windows' else '-c'
-
-    # Building the command. Ex: "ping -c 1 google.com"
-    command = ['ping', param, '1', host]
-
-    return subprocess.call(command) == 0
-
 def ping(host, network_timeout=3):
     """Send a ping packet to the specified host, using the system "ping" command."""
     args = [
